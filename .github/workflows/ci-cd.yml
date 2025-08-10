@@ -29,7 +29,9 @@ jobs:
           sleep 10
 
       - name: Verify Auth
-        run: sfdx force:org:display --targetusername MySandbox
+        run:
+          sfdx force:org:list
+          sfdx force:org:display --targetusername MySandbox
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox --wait 10
