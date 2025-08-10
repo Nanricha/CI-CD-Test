@@ -17,10 +17,12 @@ jobs:
 
       - name: Authenticate with Salesforce
         run:
-          sf org login jwt \
+          sfdx force:auth:jwt:grant \
             --client-id ${{ secrets.SF_CONSUMER_KEY }} \
             --jwt-key-file {{secrets.SF_JWT_KEY}} \
             --username ${{ secrets.SF_USERNAME }} \
             --instance-url https://login.salesforce.com \
             --alias MySandbox
-          sf project deploy start -o MySandbox
+          sfdx force:source:deploy \
+            --sourcepath force-app \
+            --targetusername MySandbox 
