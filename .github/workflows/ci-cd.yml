@@ -30,9 +30,5 @@ jobs:
       - name: Wait before verification
         run: sleep 10      
 
-      - name: Verify Auth
-        run:
-          sfdx force:org:display 
-
       - name: Deploy Code
-        run: sfdx force:source:deploy --sourcepath force-app --targetusername "${{ secrets.SF_USERNAME }}"
+        run: sfdx force:source:deploy --sourcepath force-app --targetusername "nanwaniricha173@agentforce.com"
