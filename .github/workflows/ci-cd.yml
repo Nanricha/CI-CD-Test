@@ -16,18 +16,11 @@ jobs:
         run: npm install --global sfdx-cli
 
       - name: Authenticate with Salesforce
-        run: |
-          echo "${{ secrets.SF_LOGIN_URL }}"
-          echo "${{ secrets.SF_USERNAME }}"
-          echo "${{ secrets.SF_PASSWORD }}"secret
-          echo "${{ secrets.SF_CLIENT_ID }}"
-
-          sfdx force:auth:username:login \
-          -s ${{ secrets.SF_LOGIN_URL }} \
-          -u ${{ secrets.SF_USERNAME }} \
-          -p ${{ secrets.SF_PASSWORD }} \
-          -c ${{ secrets.SF_CLIENT_ID }} \
-          -k ${{ secrets.SF_CLIENT_SECRET}}
-
-      - name: Deploy source to org
-        run: sfdx force:source:deploy -p force-app --json --loglevel fatal
+        echo "${{secrets.SF_JWT_KEY}}" > server.key
+          sf org login jwt \
+            --client-id ${{ secrets.SF_CONSUMER_KEY }} \
+            --jwt-key-file server.key \
+            --username ${{ secrets.SF_USERNAME }} \
+            --instance-url https://login.salesforce.com \
+            --alias MySandbox
+      - run: sf project deploy start -o MySandbox
