@@ -24,13 +24,12 @@ jobs:
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
             --setdefaultusername \
-            --setalias MySandbox
+            --setdefaultusername
           sfdx force:org:list
-          sleep 10
 
       - name: Verify Auth
         run:
-          sfdx force:org:display -u MySandbox
+          sfdx force:org:display
 
       - name: Deploy Code
-        run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox --wait 10
+        run: sfdx force:source:deploy --sourcepath force-app --wait 10
