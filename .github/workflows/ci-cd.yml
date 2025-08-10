@@ -23,7 +23,7 @@ jobs:
             --jwtkeyfile server.key \
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
-            --setalias MySandbox
+            --alias MySandbox
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox
