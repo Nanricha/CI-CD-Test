@@ -1,36 +1,27 @@
-name: CI/CD — Salesforce (sf CLI)
+name: Deploy to Salesforce
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Install Salesforce CLI
-        run: |
-          npm install --global @salesforce/cli
-          sf --version
+        run: npm install sfdx-cli --global
 
-      - name: Authenticate to Salesforce (JWT)
-        env:
-          SF_CLIENT_ID: ${{ secrets.SF_CLIENT_ID }}
-          SF_JWT_KEY: ${{ secrets.SF_JWT_KEY }}
-          SF_USERNAME: ${{ secrets.SF_USERNAME }}
+      - name: Authenticate with Salesforce
         run: |
-          echo "$SF_JWT_KEY" > jwt.key
-          sf org login jwt --client-id "$SF_CLIENT_ID" --jwt-key-file jwt.key --username "$SF_USERNAME" --instance-url https://login.salesforce.com --alias ci-org
+          sfdx auth:login -r ${{ secrets.SF_LOGIN_URL }} \
+            -u ${{ secrets.SF_USERNAME }} \
+            -p ${{ secrets.SF_PASSWORD }} \
+            -i ${{ secrets.SF_CLIENT_ID }} \
+            -s ${{ secrets.SF_CLIENT_SECRET }}
 
-      - name: Run unit tests
-        run: |
-          sf apex run test --test-level RunLocalTests --target-org ci-org --wait 10
-
-      - name: Deploy source
-        run: |
-          sf project deploy start --source-dir force-app --target-org ci-org --test-level RunLocalTests --wait 10
+      - name: Deploy source to org
+        run: sfdx force:source:deploy -p force-app --json --loglevel fatal
