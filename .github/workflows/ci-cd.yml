@@ -16,10 +16,11 @@ jobs:
         run: npm install --global sfdx-cli
 
       - name: Authenticate with Salesforce
+        run:
           sf org login jwt \
             --client-id ${{ secrets.SF_CONSUMER_KEY }} \
-            --jwt-key-file ${{secrets.SF_JWT_KEY}} \
+            --jwt-key-file {{secrets.SF_JWT_KEY}} \
             --username ${{ secrets.SF_USERNAME }} \
             --instance-url https://login.salesforce.com \
             --alias MySandbox
-      - run: sf project deploy start -o MySandbox
+          sf project deploy start -o MySandbox
