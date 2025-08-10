@@ -17,6 +17,11 @@ jobs:
 
       - name: Authenticate with Salesforce
         run: |
+          echo "${{ secrets.SF_LOGIN_URL }}"
+          echo "${{ secrets.SF_USERNAME }}"
+          echo "${{ secrets.SF_PASSWORD }}"
+          echo "${{ secrets.SF_CLIENT_ID }}"
+
           sfdx force:auth:username:login \
             -s ${{ secrets.SF_LOGIN_URL }} \
             -u ${{ secrets.SF_USERNAME }} \
