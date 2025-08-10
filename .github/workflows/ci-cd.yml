@@ -30,8 +30,7 @@ jobs:
 
       - name: Verify Auth
         run:
-          sfdx force:org:list
-          sfdx force:org:display --targetusername MySandbox
+          sfdx force:org:display -u MySandbox
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox --wait 10
