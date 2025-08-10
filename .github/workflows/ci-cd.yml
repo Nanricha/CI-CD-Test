@@ -26,6 +26,10 @@ jobs:
             --setdefaultusername \
             --setalias MySandbox
           sfdx force:org:list
+          sleep 10
+
+      - name: Verify Auth
+        run: sfdx force:org:display --targetusername MySandbox
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox --wait 10
