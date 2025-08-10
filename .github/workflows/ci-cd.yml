@@ -28,5 +28,6 @@ jobs:
       - name: Deploy Code
         run:
           sfdx force:source:deploy \
-            --manifest manifest/package.xml \
-            --targetusername MySandbox 
+            --sourcepath force-app \
+            --targetusername MySandbox \
+            --testlevel RunLocalTests 
