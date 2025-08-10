@@ -28,5 +28,5 @@ jobs:
       - name: Deploy Code
         run:
           sfdx force:source:deploy \
-            --sourcepath force-app \
+            --manifest manifest/package.xml \
             --targetusername MySandbox 
