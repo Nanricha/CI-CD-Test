@@ -17,12 +17,13 @@ jobs:
 
       - name: Authenticate with Salesforce
         run:
+          echo "${{secrets.SF_JWT_KEY}}" > server.key
           sfdx force:auth:jwt:grant \
-            --client-id ${{ secrets.SF_CONSUMER_KEY }} \
-            --jwt-key-file "${{secrets.SF_JWT_KEY}}" \
+            --clientid ${{ secrets.SF_CONSUMER_KEY }} \
+            --jwtkeyfile server.key \
             --username ${{ secrets.SF_USERNAME }} \
-            --instance-url https://login.salesforce.com \
-            --alias MySandbox
+            --instanceurl https://login.salesforce.com \
+            --setalias MySandbox
 
       - name: Deploy Code
         run:
