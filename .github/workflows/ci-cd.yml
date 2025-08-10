@@ -23,8 +23,9 @@ jobs:
             --jwtkeyfile server.key \
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
-            --setdefaultusername
+            --setalias MySandbox
+          sfdx force:org:display --targetusername MySandbox
             sleep 50 
 
       - name: Deploy Code
-        run: sfdx force:source:deploy --sourcepath force-app --wait 10
+        run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox --wait 10
