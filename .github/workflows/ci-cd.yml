@@ -28,7 +28,7 @@ jobs:
 
       - name: Verify Auth
         run:
-          sfdx force:org:display --targetusername "${{ secrets.SFDC_USERNAME }}"
+          sfdx force:org:display --targetusername "${{ secrets.SF_USERNAME }}"
 
       - name: Deploy Code
-        run: sfdx force:source:deploy --sourcepath force-app --targetusername "${{ secrets.SFDC_USERNAME }}" --wait 10
+        run: sfdx force:source:deploy --sourcepath force-app --targetusername "${{ secrets.SF_USERNAME }}" --wait 10
