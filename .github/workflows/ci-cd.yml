@@ -17,11 +17,11 @@ jobs:
 
       - name: Authenticate with Salesforce
         run: |
-          sfdx auth:login -r ${{ secrets.SF_LOGIN_URL }} \
+          sfdx force:auth:password:login \
+            -r ${{ secrets.SF_LOGIN_URL }} \
             -u ${{ secrets.SF_USERNAME }} \
             -p ${{ secrets.SF_PASSWORD }} \
-            -i ${{ secrets.SF_CLIENT_ID }} \
-            -s ${{ secrets.SF_CLIENT_SECRET }}
+            -c ${{ secrets.SF_CLIENT_ID }}
 
       - name: Deploy source to org
         run: sfdx force:source:deploy -p force-app --json --loglevel fatal
