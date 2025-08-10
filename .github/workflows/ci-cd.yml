@@ -17,10 +17,10 @@ jobs:
 
       - name: Authenticate with Salesforce
         run: |
-          sfdx force:auth:username:login 
-            -r ${{ secrets.SF_LOGIN_URL }} 
-            -u ${{ secrets.SF_USERNAME }} 
-            -p ${{ secrets.SF_PASSWORD }} 
+          sfdx force:auth:username:login \
+            -s ${{ secrets.SF_LOGIN_URL }} \
+            -u ${{ secrets.SF_USERNAME }} \
+            -p ${{ secrets.SF_PASSWORD }} \
             -c ${{ secrets.SF_CLIENT_ID }}
 
       - name: Deploy source to org
