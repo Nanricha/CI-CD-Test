@@ -24,8 +24,9 @@ jobs:
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
             --setalias myOrg
+            --wait 40
           sfdx auth:list
-          sleep 50
+          
 
       - name: Verify Auth
         run:
