@@ -26,8 +26,4 @@ jobs:
             --setalias MySandbox
 
       - name: Deploy Code
-        run:
-          sfdx force:source:deploy \
-            --sourcepath force-app \
-            --targetusername MySandbox \
-            --testlevel RunLocalTests 
+        run: sfdx force:source:deploy --sourcepath force-app --targetusername MySandbox
