@@ -27,7 +27,7 @@ jobs:
           -u ${{ secrets.SF_USERNAME }} \
           -p ${{ secrets.SF_PASSWORD }} \
           -c ${{ secrets.SF_CLIENT_ID }} \
-          -k ${{SF_CLIENT_SECRET}}
+          -k ${{ secrets.SF_CLIENT_SECRET}}
 
       - name: Deploy source to org
         run: sfdx force:source:deploy -p force-app --json --loglevel fatal
