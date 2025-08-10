@@ -22,7 +22,7 @@ jobs:
           echo "${{ secrets.SF_PASSWORD }}"
           echo "${{ secrets.SF_CLIENT_ID }}"
 
-          sfdx force:auth:username:login --server=${{ secrets.SF_LOGIN_URL }} --username=${{ secrets.SF_USERNAME }} --password=${{ secrets.SF_PASSWORD }} --clientid=${{ secrets.SF_CLIENT_ID }}
+          sfdx force:auth:username:login --server=https://login.salesforce.com --username=nanwaniricha173@agentforce.com --password=test@123nz53sUkoj5c8ybLrZKiEoDhZD --clientid=3MVG9dAEux2v1sLvr_B.isGTTzQYOYpdRkg03gpsiKzt70Kfw1y4inXsO7MsBixNmTSXyqIhJ5qsPuBrAEUaa 
 
       - name: Deploy source to org
         run: sfdx force:source:deploy -p force-app --json --loglevel fatal
