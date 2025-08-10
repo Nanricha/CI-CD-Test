@@ -23,12 +23,13 @@ jobs:
             --jwtkeyfile server.key \
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
-            --setdefaultdevhubusername
+            --setalias myOrg
           sfdx auth:list
+          sleep 50
 
       - name: Verify Auth
         run:
-          sfdx force:org:display --targetusername "${{ secrets.SF_USERNAME }}"
+          sfdx force:org:display --targetusername myOrg
 
       - name: Deploy Code
-        run: sfdx force:source:deploy --sourcepath force-app --targetusername "${{ secrets.SF_USERNAME }}" --wait 10
+        run: sfdx force:source:deploy --sourcepath force-app --targetusername myOrg --wait 10
