@@ -30,6 +30,7 @@ jobs:
 
       - name: Verify Auth
         run:
+          sleep 30 
           sfdx force:org:display --targetusername myOrg
 
       - name: Deploy Code
