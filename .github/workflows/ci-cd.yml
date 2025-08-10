@@ -24,7 +24,7 @@ jobs:
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
             --setdefaultusername
-            sleep 10 
+            sleep 50 
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --wait 10
