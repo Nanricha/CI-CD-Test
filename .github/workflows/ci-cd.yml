@@ -23,7 +23,7 @@ jobs:
           echo "${{ secrets.SF_CLIENT_ID }}"
 
           sfdx force:auth:password:login \
-          -r ${{ secrets.SF_LOGIN_URL }} \
+          -s ${{ secrets.SF_LOGIN_URL }} \
           -u ${{ secrets.SF_USERNAME }} \
           -p ${{ secrets.SF_PASSWORD }} \
           -c ${{ secrets.SF_CLIENT_ID }} \
