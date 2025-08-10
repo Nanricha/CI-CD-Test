@@ -24,13 +24,13 @@ jobs:
             --username ${{ secrets.SF_USERNAME }} \
             --instanceurl https://login.salesforce.com \
             --setalias myOrg
-            --wait 40
           sfdx auth:list
           
+      - name: Wait before verification
+        run: sleep 10      
 
       - name: Verify Auth
         run:
-          sleep 30 
           sfdx force:org:display --targetusername myOrg
 
       - name: Deploy Code
