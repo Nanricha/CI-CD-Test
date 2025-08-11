@@ -28,7 +28,7 @@ jobs:
             sfdx force:org:display
 
       - name: Wait before verification
-        run: sleep 10 
+        run: sleep 20
 
       - name: Deploy Code
         run: sfdx force:source:deploy --sourcepath force-app --targetusername "nanwaniricha173@agentforce.com" 
